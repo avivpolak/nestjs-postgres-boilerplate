@@ -8,7 +8,7 @@ COPY [ "package.json", "yarn.lock*", "./" ]
 
 FROM base AS dev
 ENV NODE_ENV=dev
-RUN yarn install --frozen-lockfile
+RUN yarn install 
 COPY . .
 CMD [ "yarn", "start:dev" ]
 
@@ -26,7 +26,7 @@ CMD [ "yarn", "test:watch" ]
 
 FROM base AS prod
 ENV NODE_ENV=production
-RUN yarn install --frozen-lockfile --production
+RUN yarn install --production
 COPY . .
 RUN yarn global add @nestjs/cli
 RUN yarn build

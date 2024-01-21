@@ -11,6 +11,9 @@ export class User {
   @Column()
   lastName: string;
 
+  @Column()
+  age: Number;
+
   @Column({ default: true })
   isActive: boolean;
 }
