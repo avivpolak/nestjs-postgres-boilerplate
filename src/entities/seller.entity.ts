@@ -9,7 +9,6 @@ export class Seller {
   @Column()
   name: string;
 
-  @Column("varchar",{ array: true , nullable:true})
   @OneToMany((type)=>Product,(product)=>product.seller)
   products: Product [];
 }

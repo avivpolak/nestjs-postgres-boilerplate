@@ -13,6 +13,6 @@ export class Product {
   price: Number;
 
   //@Column('varchar')
-  @ManyToOne((type)=>Seller,(seller)=>seller.id)
+  @ManyToOne((type)=>Seller,(seller)=>seller.products)
   seller: Seller;
 }

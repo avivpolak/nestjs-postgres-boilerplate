@@ -11,7 +11,10 @@ export class SellerService {
   ) {}
 
   async findOne(id: string) {
-    return await this.sellerRepo.findOne({where:{id: id}})
+    return await this.sellerRepo.findOne({
+      where:{id: id},
+      relations:["products"]
+    })
   }
 
   async create(createSellerDto:CreateSellerDto){
