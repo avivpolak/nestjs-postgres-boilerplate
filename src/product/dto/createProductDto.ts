@@ -5,5 +5,6 @@ export class CreateProductDto{
   name:string;
 
   @IsNumber()
-  price:Number;
+  price:number;
+
 }

@@ -4,9 +4,10 @@ import { SellerService } from './seller.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Seller } from '../entities/seller.entity';
 import { ProductService } from '../product/product.service';
+import { Product } from 'src/entities/product.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Seller])],
+  imports: [TypeOrmModule.forFeature([Seller,Product])],
   controllers: [SellerController],
   providers: [SellerService,ProductService]
 })

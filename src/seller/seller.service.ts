@@ -15,7 +15,7 @@ export class SellerService {
   }
 
   async create(createSellerDto:CreateSellerDto){
-    const seller = await this.sellerRepo.create(createSellerDto)
+    const seller = this.sellerRepo.create(createSellerDto)
     return await this.sellerRepo.save(seller)
   }
 }

@@ -7,18 +7,14 @@ import { CreateProductDto } from './dto/createProductDto';
 export class ProductController {
   constructor(
     private readonly productService: ProductService,
-    // private readonly sellerService: SellerService,
   ){}
   @Get(':id')
   findOne(@Param('id') id: string){
-    return "ok"
-    //return this.productService.findOne(id);
+    return this.productService.findOne(id);
   }
 
   @Post()
   create(@Body() createProductDto:CreateProductDto){
-    return "ok"
-
-    //return this.productService.create(createProductDto)
+    return this.productService.create(createProductDto)
   }
 }
