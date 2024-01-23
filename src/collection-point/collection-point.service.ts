@@ -16,7 +16,9 @@ export class CollectionPointService {
   }
 
   async findAll() {
-    return await this.collectionPointRepo.find()
+    return await this.collectionPointRepo.find({
+      relations:["distributionSessions"]
+    })
   }
 
   async findOne(id: number) {

@@ -22,7 +22,10 @@ export class DistributionSessionService {
   }
 
   async findOne(id: number) {
-    return await this.distributionSessionRepo.findOneOrFail(id)
+    return await this.distributionSessionRepo.findOneOrFail({
+      where:{id: id},
+      relations:["orders"]
+    })
   }
 
   async update(id: number,updateDistributionSessionDto: UpdateDistributionSessionDto) {

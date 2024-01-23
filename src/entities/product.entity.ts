@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Seller } from './seller.entity';
 import { AbstractEntity } from './abstract.entity';
+import { Order } from './order.entity';
 
 @Entity()
 export class Product extends AbstractEntity<Product>{
@@ -12,4 +13,7 @@ export class Product extends AbstractEntity<Product>{
 
   @ManyToOne((type)=>Seller,(seller)=>seller.products)
   seller: Seller;
+
+  @ManyToMany((type)=>Order,(order)=>order.products)
+  orders: Order [];
 }

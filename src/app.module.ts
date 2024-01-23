@@ -9,6 +9,7 @@ import { SellerModule } from './seller/seller.module';
 import { UsersModule } from './users/users.module';
 import { CollectionPointModule } from './collection-point/collection-point.module';
 import { DistributionSessionModule } from './distribution-session/distribution-session.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { DistributionSessionModule } from './distribution-session/distribution-s
     UsersModule,
     CollectionPointModule,
     DistributionSessionModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
