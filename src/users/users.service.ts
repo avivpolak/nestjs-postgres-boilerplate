@@ -15,12 +15,12 @@ export class UsersService {
     return await this.userRepo.save(user)
   }
 
-  findAll() {
-    return this.userRepo.find()
+  async findAll() {
+    return await this.userRepo.find()
   }
 
-  findOne(id: number) {
-    return this.userRepo.findOneOrFail(id)
+  async findOne(id: number) {
+    return await this.userRepo.findOneOrFail(id)
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

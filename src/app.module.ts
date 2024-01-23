@@ -7,6 +7,8 @@ import { configValidationSchema } from './config.schema';
 import { ProductModule } from './product/product.module';
 import { SellerModule } from './seller/seller.module';
 import { UsersModule } from './users/users.module';
+import { CollectionPointModule } from './collection-point/collection-point.module';
+import { DistributionSessionModule } from './distribution-session/distribution-session.module';
 
 @Module({
   imports: [
@@ -33,6 +35,8 @@ import { UsersModule } from './users/users.module';
     ProductModule,
     SellerModule,
     UsersModule,
+    CollectionPointModule,
+    DistributionSessionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
