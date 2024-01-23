@@ -7,7 +7,6 @@ import { CreateSellerDto } from './dto/createSellerDto';
 export class SellerController {
   constructor(
     private readonly sellerService: SellerService,
-    private readonly productService: ProductService,
   ){}
   @Get(':id')
   findOne(@Param('id') id: string){

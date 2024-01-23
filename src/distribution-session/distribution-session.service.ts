@@ -1,26 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDistributionSessionDto } from './dto/create-distribution-session.dto';
 import { UpdateDistributionSessionDto } from './dto/update-distribution-session.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DistributionSession } from 'src/entities/distribution-session.entity';
+import { Repository } from 'typeorm';
+import { Logger } from '@nestjs/common';
+
 
 @Injectable()
 export class DistributionSessionService {
-  create(createDistributionSessionDto: CreateDistributionSessionDto) {
-    return 'This action adds a new distributionSession';
+  constructor(
+    @InjectRepository(DistributionSession) private readonly distributionSessionRepo: Repository<DistributionSession>,
+  ) {}
+  async create(createDistributionSessionDto: CreateDistributionSessionDto) {
+    const distributionSession = this.distributionSessionRepo.create(createDistributionSessionDto)
+    return await this.distributionSessionRepo.save(distributionSession)
   }
 
-  findAll() {
-    return `This action returns all distributionSession`;
+  async findAll() {
+    return await this.distributionSessionRepo.find()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} distributionSession`;
+  async findOne(id: number) {
+    return await this.distributionSessionRepo.findOneOrFail(id)
   }
 
-  update(id: number, updateDistributionSessionDto: UpdateDistributionSessionDto) {
-    return `This action updates a #${id} distributionSession`;
+  async update(id: number,updateDistributionSessionDto: UpdateDistributionSessionDto) {
+    const collectionPoint = await this.distributionSessionRepo.findOneOrFail(id)
+    return await this.distributionSessionRepo.update(collectionPoint,updateDistributionSessionDto)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} distributionSession`;
+  async remove(id: number) {
+    return await this.distributionSessionRepo.delete(id)
   }
 }

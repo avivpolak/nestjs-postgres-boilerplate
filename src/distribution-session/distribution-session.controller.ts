@@ -8,8 +8,8 @@ export class DistributionSessionController {
   constructor(private readonly distributionSessionService: DistributionSessionService) {}
 
   @Post()
-  create(@Body() createDistributionSessionDto: CreateDistributionSessionDto) {
-    return this.distributionSessionService.create(createDistributionSessionDto);
+  async create(@Body() createDistributionSessionDto: CreateDistributionSessionDto) {
+    return await this.distributionSessionService.create(createDistributionSessionDto);
   }
 
   @Get()

@@ -20,7 +20,10 @@ export class CollectionPointService {
   }
 
   async findOne(id: number) {
-    return await this.collectionPointRepo.findOneOrFail(id)
+    return await this.collectionPointRepo.findOne({
+      where:{id: id},
+      relations:["distributionSessions"]
+    })
   }
 
   async update(id: number,updateCollectionPointDto: UpdateCollectionPointDto) {

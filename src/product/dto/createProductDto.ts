@@ -1,5 +1,4 @@
 import { IsNumber, IsString } from "class-validator";
-import { Seller } from "src/entities/seller.entity";
 
 export class CreateProductDto{
   @IsString()
