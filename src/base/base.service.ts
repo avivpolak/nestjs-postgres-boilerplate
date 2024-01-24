@@ -25,9 +25,36 @@ export class BaseService<T extends BaseEntity> implements IBaseService<T> {
 
   delete(id: number) {
     try {
+      const object = this.genericRepository.findOne(id)
+      if(object===null){
+        return ('Bad Request')//for some reason does not sending.
+      }
       this.genericRepository.delete(id);
+      return id//for some reason does not sending.
     } catch (error) {
       throw new BadGatewayException(error);
     }
   }
+
+//   try {
+//     return new Promise<any>((resolve, reject) => {
+//       this.genericRepository
+//         .findOne(id)
+//         .then((responseGet) => {
+//           try {
+//             if (responseGet == null) reject('Not existing');
+//             this.genericRepository
+//               .delete(id)
+//               .then((response) => resolve(response))
+//               .catch((err) => reject(err));
+//           } catch (e) {
+//             reject(e);
+//           }
+//         })
+//         .catch((err) => reject(err));
+//     });
+//   } catch (error) {
+//     throw new BadGatewayException(error);
+//   }
+// }
 }

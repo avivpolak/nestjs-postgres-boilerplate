@@ -17,10 +17,10 @@ export class OrderService extends BaseService<Order> {
   async get(id: number) {
     return await this.orderRepository.findOne({
       where: { id: id },
-      relations: ['products', 'distributionSession', 'user'], //bug https://stackoverflow.com/questions/60140903/cannot-read-property-tablepath-of-undefined-type-orm
+      relations: ['products', 'distributionSession', 'customer'], //bug https://stackoverflow.com/questions/60140903/cannot-read-property-tablepath-of-undefined-type-orm
     });
   }
-  async create(entity: any): Promise<number> {
+  async create(entity: CreateOrderDto): Promise<number> {
     try {
       return new Promise<number>((resolve, reject) => {
         this.orderRepository

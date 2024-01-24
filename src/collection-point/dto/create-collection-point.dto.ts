@@ -3,8 +3,11 @@ import { DistributionSession } from 'src/distribution-session/distribution-sessi
 
 export class CreateCollectionPointDto {
   @IsString()
-  address: string;
+  city: string;
 
+  @IsString()
+  address: string;
+  
   @IsArray()
   distributionSessions: DistributionSession[];
 }

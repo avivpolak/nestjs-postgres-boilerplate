@@ -5,6 +5,9 @@ import { BaseEntity } from 'src/base/base.entity';
 @Entity()
 export class CollectionPoint extends BaseEntity {
   @Column()
+  city: string;
+
+  @Column()
   address: string;
 
   @OneToMany(

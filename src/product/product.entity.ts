@@ -18,6 +18,15 @@ export class Product extends BaseEntity {
   @Column()
   price: Number;
 
+  @Column()
+  priceForTwo: Number;
+
+  @Column()
+  image: string;
+
+  @Column()
+  inventory:number;
+
   @ManyToOne((type) => Seller, (seller) => seller.products)
   seller: Seller;
 

@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { configValidationSchema } from './config.schema';
 import { ProductModule } from './product/product.module';
 import { SellerModule } from './seller/seller.module';
-import { UserModule } from './user/user.module';
+import { CustomerModule } from './customer/customer.module';
 import { CollectionPointModule } from './collection-point/collection-point.module';
 import { DistributionSessionModule } from './distribution-session/distribution-session.module';
 import { OrderModule } from './order/order.module';
@@ -35,7 +35,7 @@ import { OrderModule } from './order/order.module';
     }),
     ProductModule,
     SellerModule,
-    UserModule,
+    CustomerModule,
     CollectionPointModule,
     DistributionSessionModule,
     OrderModule,

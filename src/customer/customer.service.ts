@@ -1,21 +1,22 @@
 import { BadGatewayException, Injectable, Logger } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateCustomerDto } from './dto/create-customer.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/user/user.entity';
+import { Customer } from 'src/customer/customer.entity';
 import { Repository } from 'typeorm';
 import { BaseService } from 'src/base/base.service';
 
 @Injectable()
-export class UserService extends BaseService<User> {
+export class CustomerService extends BaseService<Customer> {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(Customer)
+    private readonly customerRepository: Repository<Customer>,
   ) {
-    super(userRepository);
+    super(customerRepository);
   }
+
   async get(id: number) {
-    return await this.userRepository.findOne({
+    return await this.customerRepository.findOne({
       where: { id: id },
       relations: ['orders'],
     });
@@ -23,7 +24,7 @@ export class UserService extends BaseService<User> {
   async create(entity: any): Promise<number> {
     try {
       return new Promise<number>((resolve, reject) => {
-        this.userRepository
+        this.customerRepository
           .save(entity)
           .then((created) => resolve(created.id))
           .catch((err) => reject(err));
@@ -35,13 +36,13 @@ export class UserService extends BaseService<User> {
   async update(entity: any, id: number): Promise<any> {
     try {
       return new Promise<any>((resolve, reject) => {
-        this.userRepository
+        this.customerRepository
           .findOne(id)
           .then((responseGet) => {
             try {
               if (responseGet == null) reject('Not existing');
               let updatedEntity: any = Object.assign(responseGet, entity);
-              this.userRepository
+              this.customerRepository
                 .save(updatedEntity)
                 .then((response) => resolve(response))
                 .catch((err) => reject(err));

@@ -1,4 +1,5 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsNumber, IsString } from 'class-validator';
+import { Seller } from 'src/seller/seller.entity';
 
 export class CreateDistributionSessionDto {
   @IsString()
@@ -6,4 +7,10 @@ export class CreateDistributionSessionDto {
 
   @IsNumber()
   collectionPointID: number;
+
+  @IsArray()
+  sellers: Seller[]
+
+  @IsBoolean()
+  hide: Boolean;
 }

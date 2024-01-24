@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString, IsUrl } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -6,6 +6,15 @@ export class CreateProductDto {
 
   @IsNumber()
   price: number;
+
+  @IsNumber()
+  priceForTwo: Number;
+
+  @IsUrl()
+  image: string;
+
+  @IsNumber()
+  inventory:number;
 
   @IsNumber()
   sellerID: number;
