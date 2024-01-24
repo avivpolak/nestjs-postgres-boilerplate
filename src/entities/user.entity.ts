@@ -1,5 +1,4 @@
 import { Column, Entity, OneToMany } from "typeorm";
-import { AbstractEntity } from "./abstract.entity";
 import { Order } from "./order.entity";
 import { BaseEntity } from "src/base/base.entity";
 

@@ -3,22 +3,20 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Seller } from 'src/entities/seller.entity';
 import { Repository } from 'typeorm';
 import { CreateSellerDto } from './dto/createSellerDto';
+import { BaseService } from 'src/base/base.service';
 
 @Injectable()
-export class SellerService {
+export class SellerService extends BaseService<Seller>{
   constructor(
-    @InjectRepository(Seller) private readonly sellerRepo: Repository<Seller>,
-  ) {}
-
-  async findOne(id: string) {
-    return await this.sellerRepo.findOne({
+		@InjectRepository(Seller)
+		private readonly sellerRepository: Repository<Seller>) {
+			super(sellerRepository);
+	}
+  async get(id: number) {
+    return await this.sellerRepository.findOne({
       where:{id: id},
       relations:["products"]
     })
   }
-
-  async create(createSellerDto:CreateSellerDto){
-    const seller = this.sellerRepo.create(createSellerDto)
-    return await this.sellerRepo.save(seller)
-  }
 }
+

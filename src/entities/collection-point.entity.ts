@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany } from "typeorm";
-import { AbstractEntity } from "./abstract.entity";
 import { DistributionSession } from "./distribution-session.entity";
+import { BaseEntity } from "src/base/base.entity";
 
 @Entity()
-export class CollectionPoint extends AbstractEntity<CollectionPoint>{
+export class CollectionPoint extends BaseEntity{
   @Column()
   address: string;
 

@@ -4,36 +4,19 @@ import { UpdateCollectionPointDto } from './dto/update-collection-point.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CollectionPoint } from 'src/entities/collection-point.entity';
 import { Repository } from 'typeorm';
+import { BaseService } from 'src/base/base.service';
 
 @Injectable()
-export class CollectionPointService {
+export class CollectionPointService extends BaseService<CollectionPoint>{
   constructor(
-    @InjectRepository(CollectionPoint) private readonly collectionPointRepo: Repository<CollectionPoint>,
-  ) {}
-  async create(createCollectionPointDto: CreateCollectionPointDto) {
-    const collectionPoint = this.collectionPointRepo.create(createCollectionPointDto)
-    return await this.collectionPointRepo.save(collectionPoint)
-  }
-
-  async findAll() {
-    return await this.collectionPointRepo.find({
-      relations:["distributionSessions"]
-    })
-  }
-
-  async findOne(id: number) {
-    return await this.collectionPointRepo.findOne({
+		@InjectRepository(CollectionPoint)
+		private readonly collectionPointRepository: Repository<CollectionPoint>) {
+			super(collectionPointRepository);
+	}
+  async get(id: number) {
+    return await this.collectionPointRepository.findOne({
       where:{id: id},
       relations:["distributionSessions"]
     })
-  }
-
-  async update(id: number,updateCollectionPointDto: UpdateCollectionPointDto) {
-    const collectionPoint = await this.collectionPointRepo.findOneOrFail(id)
-    return await this.collectionPointRepo.update(collectionPoint,updateCollectionPointDto)
-  }
-
-  async remove(id: number) {
-    return await this.collectionPointRepo.delete(id)
   }
 }

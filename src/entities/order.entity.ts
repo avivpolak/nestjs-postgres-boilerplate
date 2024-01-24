@@ -1,11 +1,11 @@
 import { Column, Entity, ManyToMany, ManyToOne } from "typeorm";
-import { AbstractEntity } from "./abstract.entity";
 import { User } from "./user.entity";
 import { DistributionSession } from "./distribution-session.entity";
 import { Product } from "./product.entity";
+import { BaseEntity } from "src/base/base.entity";
 
 @Entity()
-export class Order extends AbstractEntity<Order>{
+export class Order extends BaseEntity{
   @Column()
   time:string;
 

@@ -37,7 +37,7 @@ export class BaseController<T extends BaseEntity>{
 
 	@Put()
 	//@ApiResponse({ status: 400, description: 'Bad Request.'})
-	//@ApiResponse({ status: 200, description: 'Entity deleted successfully.'})
+	// @ApiResponse({ status: 200, description: 'Entity deleted successfully.'})
 	async update(@Body() entity: T): Promise<T> {
 	  return this.IBaseService.update(entity);
 	}

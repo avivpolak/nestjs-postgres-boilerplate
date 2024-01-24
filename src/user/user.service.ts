@@ -13,4 +13,10 @@ export class UserService  extends BaseService<User>{
 		private readonly userRepository: Repository<User>) {
 			super(userRepository);
 	}
+  async get(id: number) {
+    return await this.userRepository.findOne({
+      where:{id: id},
+      relations:["orders"]
+    })
+  }
 }

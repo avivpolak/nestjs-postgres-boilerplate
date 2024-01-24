@@ -1,10 +1,10 @@
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
-import { AbstractEntity } from "./abstract.entity";
 import { CollectionPoint } from "./collection-point.entity";
 import { Order } from "./order.entity";
+import { BaseEntity } from "src/base/base.entity";
 
 @Entity()
-export class DistributionSession extends AbstractEntity<DistributionSession> {
+export class DistributionSession extends BaseEntity {
   @Column()
   time:string;
 

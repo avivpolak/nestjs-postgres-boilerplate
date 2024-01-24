@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Product } from './product.entity';
-import { AbstractEntity } from './abstract.entity';
+import { BaseEntity } from 'src/base/base.entity';
 
 @Entity()
-export class Seller extends AbstractEntity<Seller> {
+export class Seller extends BaseEntity {
   @Column()
   name: string;
 

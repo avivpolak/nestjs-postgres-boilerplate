@@ -5,35 +5,20 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DistributionSession } from 'src/entities/distribution-session.entity';
 import { Repository } from 'typeorm';
 import { Logger } from '@nestjs/common';
+import { BaseService } from 'src/base/base.service';
 
 
 @Injectable()
-export class DistributionSessionService {
+export class DistributionSessionService extends BaseService<DistributionSession>{
   constructor(
-    @InjectRepository(DistributionSession) private readonly distributionSessionRepo: Repository<DistributionSession>,
-  ) {}
-  async create(createDistributionSessionDto: CreateDistributionSessionDto) {
-    const distributionSession = this.distributionSessionRepo.create(createDistributionSessionDto)
-    return await this.distributionSessionRepo.save(distributionSession)
-  }
-
-  async findAll() {
-    return await this.distributionSessionRepo.find()
-  }
-
-  async findOne(id: number) {
-    return await this.distributionSessionRepo.findOneOrFail({
+		@InjectRepository(DistributionSession)
+		private readonly distributionSessionRepository: Repository<DistributionSession>) {
+			super(distributionSessionRepository);
+	}
+  async get(id: number) {
+    return await this.distributionSessionRepository.findOne({
       where:{id: id},
       relations:["orders"]
     })
-  }
-
-  async update(id: number,updateDistributionSessionDto: UpdateDistributionSessionDto) {
-    const collectionPoint = await this.distributionSessionRepo.findOneOrFail(id)
-    return await this.distributionSessionRepo.update(collectionPoint,updateDistributionSessionDto)
-  }
-
-  async remove(id: number) {
-    return await this.distributionSessionRepo.delete(id)
   }
 }

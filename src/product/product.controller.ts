@@ -1,20 +1,12 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductService } from './product.service';
-// import { SellerService } from '../seller/seller.service';
 import { CreateProductDto } from './dto/createProductDto';
+import { BaseController } from 'src/base/base.controller';
+import { Product } from 'src/entities/product.entity';
 
 @Controller('product')
-export class ProductController {
-  constructor(
-    private readonly productService: ProductService,
-  ){}
-  @Get(':id')
-  findOne(@Param('id') id: string){
-    return this.productService.findOne(id);
-  }
-
-  @Post()
-  create(@Body() createProductDto:CreateProductDto){
-    return this.productService.create(createProductDto)
-  }
+export class ProductController extends BaseController<Product>{
+  constructor(private readonly productService: ProductService) {
+		super(productService)
+	}
 }
