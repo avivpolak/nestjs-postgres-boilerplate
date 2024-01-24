@@ -1,10 +1,10 @@
-import { IsArray, IsString } from "class-validator";
-import { DistributionSession } from "src/entities/distribution-session.entity";
+import { IsArray, IsString } from 'class-validator';
+import { DistributionSession } from 'src/distribution-session/distribution-session.entity';
 
 export class CreateCollectionPointDto {
   @IsString()
-  address:string;
+  address: string;
 
   @IsArray()
-  distributionSessions:DistributionSession[];
+  distributionSessions: DistributionSession[];
 }

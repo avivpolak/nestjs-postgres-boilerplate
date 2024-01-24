@@ -1,10 +1,10 @@
-import { IsArray, IsString } from "class-validator";
-import { Product } from "src/entities/product.entity";
+import { IsArray, IsString } from 'class-validator';
+import { Product } from 'src/product/product.entity';
 
-export class CreateSellerDto{
+export class CreateSellerDto {
   @IsString()
-  name:string;
+  name: string;
 
   @IsArray()
-  products:Product[];
+  products: Product[];
 }
