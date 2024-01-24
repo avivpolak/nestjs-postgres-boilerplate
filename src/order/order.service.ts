@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadGatewayException, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { BaseService } from 'src/base/base.service';
@@ -20,4 +20,40 @@ export class OrderService extends BaseService<Order> {
       relations: ['products', 'distributionSession', 'user'], //bug https://stackoverflow.com/questions/60140903/cannot-read-property-tablepath-of-undefined-type-orm
     });
   }
+  async create(entity: any): Promise<number> {
+    try {
+      return new Promise<number>((resolve, reject) => {
+        this.orderRepository
+          .save(entity)
+          .then((created) => resolve(created.id))
+          .catch((err) => reject(err));
+      });
+    } catch (error) {
+      throw new BadGatewayException(error);
+    }
+  }
+
+  async update(entity: any,id:number): Promise<any> {
+    try {
+      return new Promise<any>((resolve, reject) => {
+        this.orderRepository
+          .findOne(id)
+          .then((responseGet) => {
+            try {
+              if (responseGet == null) reject('Not existing');
+              let updatedEntity: any = Object.assign(responseGet, entity);
+              this.orderRepository
+                .save(updatedEntity)
+                .then((response) => resolve(response))
+                .catch((err) => reject(err));
+            } catch (e) {
+              reject(e);
+            }
+          })
+          .catch((err) => reject(err));
+      });
+    } catch (error) {
+      throw new BadGatewayException(error);
+    }
+}
 }

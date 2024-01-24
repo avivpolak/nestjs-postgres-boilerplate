@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Body,
   Patch,
   Param,
@@ -20,4 +21,14 @@ export class DistributionSessionController extends BaseController<DistributionSe
   ) {
     super(distributionSessionService);
   }
+
+  @Post()
+	async create(@Body() entity: CreateDistributionSessionDto): Promise<number> {
+		return this.distributionSessionService.create(entity);
+	}
+
+  @Put()
+	async update(@Body() entity: UpdateDistributionSessionDto,@Param('id') id: number): Promise<UpdateDistributionSessionDto> {
+	  return this.distributionSessionService.update(entity,id);
+	}
 }

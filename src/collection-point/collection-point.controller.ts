@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Body,
   Patch,
   Param,
@@ -18,4 +19,14 @@ export class CollectionPointController extends BaseController<CollectionPoint> {
   constructor(private readonly collectionPointService: CollectionPointService) {
     super(collectionPointService);
   }
+
+  @Post()
+	async create(@Body() entity: CreateCollectionPointDto): Promise<number> {
+		return this.collectionPointService.create(entity);
+	}
+
+  @Put()
+	async update(@Body() entity: UpdateCollectionPointDto,@Param('id') id: number): Promise<UpdateCollectionPointDto> {
+	  return this.collectionPointService.update(entity,id);
+	}
 }
