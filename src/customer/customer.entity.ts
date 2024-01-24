@@ -11,7 +11,7 @@ export class Customer extends BaseEntity {
   manychatID: string;
 
   @Column()
-  whatsappID:string;
+  whatsappID: string;
 
   @OneToMany((type) => Order, (order) => order.customer)
   orders: Order[];

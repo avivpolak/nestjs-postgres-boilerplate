@@ -25,7 +25,7 @@ export class Product extends BaseEntity {
   image: string;
 
   @Column()
-  inventory:number;
+  inventory: number;
 
   @ManyToOne((type) => Seller, (seller) => seller.products)
   seller: Seller;

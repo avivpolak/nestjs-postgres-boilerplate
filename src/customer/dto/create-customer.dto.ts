@@ -9,7 +9,7 @@ export class CreateCustomerDto {
   manychatID: string;
 
   @IsPhoneNumber()
-  whatsappID:string;
+  whatsappID: string;
 
   @IsArray()
   orders: Order[];

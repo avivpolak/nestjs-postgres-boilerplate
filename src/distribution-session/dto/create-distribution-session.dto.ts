@@ -9,7 +9,7 @@ export class CreateDistributionSessionDto {
   collectionPointID: number;
 
   @IsArray()
-  sellers: Seller[]
+  sellers: Seller[];
 
   @IsBoolean()
   hide: Boolean;

@@ -14,7 +14,7 @@ export class CreateProductDto {
   image: string;
 
   @IsNumber()
-  inventory:number;
+  inventory: number;
 
   @IsNumber()
   sellerID: number;

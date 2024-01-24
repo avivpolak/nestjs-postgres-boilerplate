@@ -7,7 +7,7 @@ export class CreateCollectionPointDto {
 
   @IsString()
   address: string;
-  
+
   @IsArray()
   distributionSessions: DistributionSession[];
 }

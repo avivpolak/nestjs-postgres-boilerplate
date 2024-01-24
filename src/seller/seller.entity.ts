@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Product } from '../product/product.entity';
 import { BaseEntity } from 'src/base/base.entity';
 import { Order } from 'src/order/order.entity';
@@ -10,7 +16,7 @@ export class Seller extends BaseEntity {
   name: string;
 
   @Column()
-  specialty : string;
+  specialty: string;
 
   @Column()
   welcomeMessage: string;
@@ -34,7 +40,7 @@ export class Seller extends BaseEntity {
   minAmountPerDistribution: number;
 
   @Column()
-  visibilityCutoffHours:number;
+  visibilityCutoffHours: number;
 
   @OneToMany((type) => Product, (product) => product.seller)
   products: Product[];
@@ -42,6 +48,9 @@ export class Seller extends BaseEntity {
   @OneToMany((type) => Order, (order) => order.seller)
   orders: Order[];
 
-  @ManyToMany((type)=>DistributionSession,(distributionSession)=>distributionSession.sellers)
-  distributionSessions: DistributionSession[]
+  @ManyToMany(
+    (type) => DistributionSession,
+    (distributionSession) => distributionSession.sellers,
+  )
+  distributionSessions: DistributionSession[];
 }
