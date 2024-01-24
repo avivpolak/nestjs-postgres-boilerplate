@@ -8,10 +8,10 @@ async function bootstrap() {
   const port = process.env.PORT;
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist:true,
-      forbidNonWhitelisted:true
-    })
-  )
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
   await app.listen(port);
 
   logger.log(`Application listening on port ${port}`);

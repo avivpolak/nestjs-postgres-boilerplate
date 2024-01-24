@@ -21,12 +21,15 @@ export class CollectionPointController extends BaseController<CollectionPoint> {
   }
 
   @Post()
-	async create(@Body() entity: CreateCollectionPointDto): Promise<number> {
-		return this.collectionPointService.create(entity);
-	}
+  async create(@Body() entity: CreateCollectionPointDto): Promise<number> {
+    return this.collectionPointService.create(entity);
+  }
 
   @Put()
-	async update(@Body() entity: UpdateCollectionPointDto,@Param('id') id: number): Promise<UpdateCollectionPointDto> {
-	  return this.collectionPointService.update(entity,id);
-	}
+  async update(
+    @Body() entity: UpdateCollectionPointDto,
+    @Param('id') id: number,
+  ): Promise<UpdateCollectionPointDto> {
+    return this.collectionPointService.update(entity, id);
+  }
 }

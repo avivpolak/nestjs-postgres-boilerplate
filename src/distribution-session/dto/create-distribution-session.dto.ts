@@ -1,9 +1,9 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateDistributionSessionDto {
   @IsString()
-  time:string;
+  time: string;
 
   @IsNumber()
-  collectionPointID:number;
+  collectionPointID: number;
 }

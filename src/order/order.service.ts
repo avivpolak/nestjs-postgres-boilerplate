@@ -33,7 +33,7 @@ export class OrderService extends BaseService<Order> {
     }
   }
 
-  async update(entity: any,id:number): Promise<any> {
+  async update(entity: any, id: number): Promise<any> {
     try {
       return new Promise<any>((resolve, reject) => {
         this.orderRepository
@@ -55,5 +55,5 @@ export class OrderService extends BaseService<Order> {
     } catch (error) {
       throw new BadGatewayException(error);
     }
-}
+  }
 }

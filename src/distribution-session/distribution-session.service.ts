@@ -34,7 +34,7 @@ export class DistributionSessionService extends BaseService<DistributionSession>
     }
   }
 
-  async update(entity: any,id:number): Promise<any> {
+  async update(entity: any, id: number): Promise<any> {
     try {
       return new Promise<any>((resolve, reject) => {
         this.distributionSessionRepository
@@ -56,4 +56,5 @@ export class DistributionSessionService extends BaseService<DistributionSession>
     } catch (error) {
       throw new BadGatewayException(error);
     }
-}}
+  }
+}

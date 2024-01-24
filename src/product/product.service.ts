@@ -32,7 +32,7 @@ export class ProductService extends BaseService<Product> {
     }
   }
 
-  async update(entity: any,id:number): Promise<any> {
+  async update(entity: any, id: number): Promise<any> {
     try {
       return new Promise<any>((resolve, reject) => {
         this.productRepository
@@ -54,6 +54,5 @@ export class ProductService extends BaseService<Product> {
     } catch (error) {
       throw new BadGatewayException(error);
     }
-  
-}
+  }
 }

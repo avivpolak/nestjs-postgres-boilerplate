@@ -32,7 +32,7 @@ export class UserService extends BaseService<User> {
       throw new BadGatewayException(error);
     }
   }
-  async update(entity: any,id:number): Promise<any> {
+  async update(entity: any, id: number): Promise<any> {
     try {
       return new Promise<any>((resolve, reject) => {
         this.userRepository

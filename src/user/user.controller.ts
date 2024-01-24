@@ -22,13 +22,15 @@ export class UserController extends BaseController<User> {
   }
 
   @Post()
-	async create(@Body() entity: CreateUserDto): Promise<number> {
-		return this.userService.create(entity);
-	}
-
+  async create(@Body() entity: CreateUserDto): Promise<number> {
+    return this.userService.create(entity);
+  }
 
   @Put(':id')
-	async update(@Body() entity: UpdateUserDto,@Param('id') id: number): Promise<UpdateUserDto> {
-	  return this.userService.update(entity,id);
-	}
+  async update(
+    @Body() entity: UpdateUserDto,
+    @Param('id') id: number,
+  ): Promise<UpdateUserDto> {
+    return this.userService.update(entity, id);
+  }
 }

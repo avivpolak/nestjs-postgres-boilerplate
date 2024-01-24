@@ -23,12 +23,15 @@ export class DistributionSessionController extends BaseController<DistributionSe
   }
 
   @Post()
-	async create(@Body() entity: CreateDistributionSessionDto): Promise<number> {
-		return this.distributionSessionService.create(entity);
-	}
+  async create(@Body() entity: CreateDistributionSessionDto): Promise<number> {
+    return this.distributionSessionService.create(entity);
+  }
 
   @Put()
-	async update(@Body() entity: UpdateDistributionSessionDto,@Param('id') id: number): Promise<UpdateDistributionSessionDto> {
-	  return this.distributionSessionService.update(entity,id);
-	}
+  async update(
+    @Body() entity: UpdateDistributionSessionDto,
+    @Param('id') id: number,
+  ): Promise<UpdateDistributionSessionDto> {
+    return this.distributionSessionService.update(entity, id);
+  }
 }

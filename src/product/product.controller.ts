@@ -12,12 +12,15 @@ export class ProductController extends BaseController<Product> {
   }
 
   @Post()
-	async create(@Body() entity: CreateProductDto): Promise<number> {
-		return this.productService.create(entity);
-	}
+  async create(@Body() entity: CreateProductDto): Promise<number> {
+    return this.productService.create(entity);
+  }
 
   @Put()
-	async update(@Body() entity: UpdateProductDto,@Param('id') id: number): Promise<UpdateProductDto> {
-	  return this.productService.update(entity,id);
-	}
+  async update(
+    @Body() entity: UpdateProductDto,
+    @Param('id') id: number,
+  ): Promise<UpdateProductDto> {
+    return this.productService.update(entity, id);
+  }
 }

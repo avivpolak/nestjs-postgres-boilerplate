@@ -9,7 +9,9 @@ describe('DistributionSessionService', () => {
       providers: [DistributionSessionService],
     }).compile();
 
-    service = module.get<DistributionSessionService>(DistributionSessionService);
+    service = module.get<DistributionSessionService>(
+      DistributionSessionService,
+    );
   });
 
   it('should be defined', () => {

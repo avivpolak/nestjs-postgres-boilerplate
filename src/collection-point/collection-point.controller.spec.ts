@@ -11,7 +11,9 @@ describe('CollectionPointController', () => {
       providers: [CollectionPointService],
     }).compile();
 
-    controller = module.get<CollectionPointController>(CollectionPointController);
+    controller = module.get<CollectionPointController>(
+      CollectionPointController,
+    );
   });
 
   it('should be defined', () => {

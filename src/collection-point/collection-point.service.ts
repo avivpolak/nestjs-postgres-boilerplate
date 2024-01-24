@@ -33,7 +33,7 @@ export class CollectionPointService extends BaseService<CollectionPoint> {
     }
   }
 
-  async update(entity: any,id:number): Promise<any> {
+  async update(entity: any, id: number): Promise<any> {
     try {
       return new Promise<any>((resolve, reject) => {
         this.collectionPointRepository
@@ -55,5 +55,5 @@ export class CollectionPointService extends BaseService<CollectionPoint> {
     } catch (error) {
       throw new BadGatewayException(error);
     }
-}
+  }
 }

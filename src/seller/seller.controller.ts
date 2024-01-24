@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post,Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { SellerService } from './seller.service';
 import { ProductService } from '../product/product.service';
 import { CreateSellerDto } from './dto/createSellerDto';
@@ -13,12 +13,15 @@ export class SellerController extends BaseController<Seller> {
   }
 
   @Post()
-	async create(@Body() entity: CreateSellerDto): Promise<number> {
-		return this.sellerService.create(entity);
-	}
+  async create(@Body() entity: CreateSellerDto): Promise<number> {
+    return this.sellerService.create(entity);
+  }
 
   @Put()
-	async update(@Body() entity: UpdateSellerDto,@Param('id') id: number): Promise<UpdateSellerDto> {
-	  return this.sellerService.update(entity,id);
-	}
+  async update(
+    @Body() entity: UpdateSellerDto,
+    @Param('id') id: number,
+  ): Promise<UpdateSellerDto> {
+    return this.sellerService.update(entity, id);
+  }
 }

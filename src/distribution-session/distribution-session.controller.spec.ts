@@ -11,7 +11,9 @@ describe('DistributionSessionController', () => {
       providers: [DistributionSessionService],
     }).compile();
 
-    controller = module.get<DistributionSessionController>(DistributionSessionController);
+    controller = module.get<DistributionSessionController>(
+      DistributionSessionController,
+    );
   });
 
   it('should be defined', () => {
