@@ -6,9 +6,9 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Product } from '../product/product.entity';
-import { BaseEntity } from 'src/base/base.entity';
-import { Order } from 'src/order/order.entity';
-import { DistributionSession } from 'src/distribution-session/distribution-session.entity';
+import { BaseEntity } from '../base/base.entity';
+import { Order } from '../order/order.entity';
+import { DistributionSession } from '../distribution-session/distribution-session.entity';
 
 @Entity()
 export class Seller extends BaseEntity {

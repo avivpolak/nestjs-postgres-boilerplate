@@ -8,7 +8,7 @@ export class CreateProductDto {
   price: number;
 
   @IsNumber()
-  priceForTwo: Number;
+  priceForTwo: number;
 
   @IsUrl()
   image: string;

@@ -1,5 +1,5 @@
 import { IsArray, IsPhoneNumber, IsString } from 'class-validator';
-import { Order } from 'src/order/order.entity';
+import { Order } from '../../order/order.entity';
 
 export class CreateCustomerDto {
   @IsString()

@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { DistributionSession } from '../distribution-session/distribution-session.entity';
-import { BaseEntity } from 'src/base/base.entity';
+import { BaseEntity } from '../base/base.entity';
 
 @Entity()
 export class CollectionPoint extends BaseEntity {

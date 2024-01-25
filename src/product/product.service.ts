@@ -1,9 +1,9 @@
 import { BadGatewayException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from 'src/product/product.entity';
+import { Product } from './product.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/createProductDto';
-import { BaseService } from 'src/base/base.service';
+import { BaseService } from '../base/base.service';
 
 @Injectable()
 export class ProductService extends BaseService<Product> {

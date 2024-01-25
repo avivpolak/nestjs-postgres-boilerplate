@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Seller } from '../seller/seller.entity';
 import { Order } from '../order/order.entity';
-import { BaseEntity } from 'src/base/base.entity';
+import { BaseEntity } from '../base/base.entity';
 
 @Entity()
 export class Product extends BaseEntity {

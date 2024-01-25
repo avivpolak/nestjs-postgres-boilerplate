@@ -2,9 +2,9 @@ import { BadGatewayException, Injectable } from '@nestjs/common';
 import { CreateCollectionPointDto } from './dto/create-collection-point.dto';
 import { UpdateCollectionPointDto } from './dto/update-collection-point.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CollectionPoint } from 'src/collection-point/collection-point.entity';
+import { CollectionPoint } from './collection-point.entity';
 import { Repository } from 'typeorm';
-import { BaseService } from 'src/base/base.service';
+import { BaseService } from '../base/base.service';
 
 @Injectable()
 export class CollectionPointService extends BaseService<CollectionPoint> {

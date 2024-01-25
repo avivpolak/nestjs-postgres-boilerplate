@@ -12,8 +12,8 @@ import {
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
-import { BaseController } from 'src/base/base.controller';
-import { Customer } from 'src/customer/customer.entity';
+import { BaseController } from '../base/base.controller';
+import { Customer } from './customer.entity';
 
 @Controller('customer')
 export class CustomerController extends BaseController<Customer> {

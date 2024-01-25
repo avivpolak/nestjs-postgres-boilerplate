@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
 import { CollectionPoint } from '../collection-point/collection-point.entity';
 import { Order } from '../order/order.entity';
-import { BaseEntity } from 'src/base/base.entity';
-import { Seller } from 'src/seller/seller.entity';
+import { BaseEntity } from '../base/base.entity';
+import { Seller } from '../seller/seller.entity';
 
 @Entity()
 export class DistributionSession extends BaseEntity {

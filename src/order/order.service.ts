@@ -1,10 +1,10 @@
 import { BadGatewayException, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { BaseService } from 'src/base/base.service';
+import { BaseService } from '../base/base.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Order } from 'src/order/order.entity';
+import { Order } from './order.entity';
 
 @Injectable()
 export class OrderService extends BaseService<Order> {

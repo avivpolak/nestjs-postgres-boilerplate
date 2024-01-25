@@ -2,10 +2,9 @@ import { BadGatewayException, Injectable } from '@nestjs/common';
 import { CreateDistributionSessionDto } from './dto/create-distribution-session.dto';
 import { UpdateDistributionSessionDto } from './dto/update-distribution-session.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DistributionSession } from 'src/distribution-session/distribution-session.entity';
+import { DistributionSession } from './distribution-session.entity';
 import { Repository } from 'typeorm';
-import { Logger } from '@nestjs/common';
-import { BaseService } from 'src/base/base.service';
+import { BaseService } from '../base/base.service';
 
 @Injectable()
 export class DistributionSessionService extends BaseService<DistributionSession> {

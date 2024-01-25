@@ -2,8 +2,8 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { SellerService } from './seller.service';
 import { ProductService } from '../product/product.service';
 import { CreateSellerDto } from './dto/createSellerDto';
-import { BaseController } from 'src/base/base.controller';
-import { Seller } from 'src/seller/seller.entity';
+import { BaseController } from '../base/base.controller';
+import { Seller } from './seller.entity';
 import { UpdateSellerDto } from './dto/update-seller.dto';
 
 @Controller('seller')

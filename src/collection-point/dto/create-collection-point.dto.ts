@@ -1,5 +1,5 @@
 import { IsArray, IsString } from 'class-validator';
-import { DistributionSession } from 'src/distribution-session/distribution-session.entity';
+import { DistributionSession } from '../../distribution-session/distribution-session.entity';
 
 export class CreateCollectionPointDto {
   @IsString()
