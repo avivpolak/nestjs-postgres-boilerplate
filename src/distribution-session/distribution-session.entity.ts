@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { CollectionPoint } from '../collection-point/collection-point.entity';
 import { Order } from '../order/order.entity';
 import { BaseEntity } from '../base/base.entity';
@@ -22,5 +29,16 @@ export class DistributionSession extends BaseEntity {
   orders: Order[];
 
   @ManyToMany((type) => Seller, (seller) => seller.distributionSessions)
+  // @JoinTable({
+  //   name: 'distributionSession',
+  //   joinColumn: {
+  //     name: 'distributionSessions',
+  //     referencedColumnName: 'id',
+  //   },
+  //   inverseJoinColumn: {
+  //     name: 'seller',
+  //     referencedColumnName: 'id',
+  //   },
+  // })
   sellers: Seller[];
 }

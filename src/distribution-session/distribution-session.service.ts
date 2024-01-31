@@ -17,7 +17,12 @@ export class DistributionSessionService extends BaseService<DistributionSession>
   async get(id: number) {
     return await this.distributionSessionRepository.findOne({
       where: { id: id },
-      relations: ['orders'],
+      relations: ['orders','collectionPoint','sellers'],
+    });
+  }
+  async getAll() {
+    return await this.distributionSessionRepository.find({
+      relations: ['orders','collectionPoint'],
     });
   }
   async create(entity: any): Promise<number> {

@@ -9,5 +9,7 @@ import { DistributionSession } from '../distribution-session/distribution-sessio
   imports: [TypeOrmModule.forFeature([CollectionPoint, DistributionSession])],
   controllers: [CollectionPointController],
   providers: [CollectionPointService],
+  exports: [CollectionPointService]
+
 })
 export class CollectionPointModule {}

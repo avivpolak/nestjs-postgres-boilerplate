@@ -9,5 +9,6 @@ import { Order } from '../order/order.entity';
   imports: [TypeOrmModule.forFeature([DistributionSession, Order])],
   controllers: [DistributionSessionController],
   providers: [DistributionSessionService],
+  exports: [DistributionSessionService]
 })
 export class DistributionSessionModule {}

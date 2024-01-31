@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -52,5 +53,16 @@ export class Seller extends BaseEntity {
     (type) => DistributionSession,
     (distributionSession) => distributionSession.sellers,
   )
+  // @JoinTable({
+  //   name: 'seller',
+  //   joinColumn: {
+  //     name: 'sellers',
+  //     referencedColumnName: 'id',
+  //   },
+  //   inverseJoinColumn: {
+  //     name: 'distributionSessions',
+  //     referencedColumnName: 'id',
+  //   },
+  // })
   distributionSessions: DistributionSession[];
 }
