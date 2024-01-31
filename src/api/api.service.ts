@@ -35,13 +35,17 @@ export class ApiService {
       const now  = new Date()
       return time>now
     })
-    return filteredDs.map((ds,i)=>`${numberToEmoji(i+1)}-*${(ds.collectionPoint).city}* - ${ds.time} (${ds.collectionPoint.address})\n`).join("")
+    return filteredDs.map((ds,i)=>`${numberToEmoji(i+1)}* ${(ds.collectionPoint).city}* - ${ds.time} (${ds.collectionPoint.address})\n`).join("")
   }
 
   async getSellersList(distributionSessionId:number) {
-    //return distributionSessionId
-    return (await this.distributionSessionService.get(distributionSessionId)) //.map((seller,i)=>
-    //`${numberToEmoji(i+1)}-*${seller.name}* - ${seller.specialty}\n`)
+    return (await this.distributionSessionService.get(distributionSessionId))?.sellers?.map((seller,i)=>
+    `${numberToEmoji(i+1)} *${seller.name}* - ${seller.specialty}\n`).join("")
+  }
+
+  async getProductsList(sellerId:number) {
+    return (await this.sellerService.get(sellerId))?.products?.map((product,i)=>
+    `${numberToEmoji(i+1)} *${product.name}* - ${product.price}\n`).join("")
   }
 
 

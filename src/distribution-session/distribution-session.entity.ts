@@ -29,16 +29,6 @@ export class DistributionSession extends BaseEntity {
   orders: Order[];
 
   @ManyToMany((type) => Seller, (seller) => seller.distributionSessions)
-  // @JoinTable({
-  //   name: 'distributionSession',
-  //   joinColumn: {
-  //     name: 'distributionSessions',
-  //     referencedColumnName: 'id',
-  //   },
-  //   inverseJoinColumn: {
-  //     name: 'seller',
-  //     referencedColumnName: 'id',
-  //   },
-  // })
+  @JoinTable()
   sellers: Seller[];
 }

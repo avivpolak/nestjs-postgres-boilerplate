@@ -17,10 +17,14 @@ export class ApiController {
     return this.apiService.getDistributionSessionsList();
   }
 
-  @Get('sellers-list/:id')
-  //@Get(':DistributionSessionsListID')
-  getSellersList(@Param('id') id: number) {
-    return this.apiService.getSellersList(id);
+  @Get('sellers-list/:DistributionSessionsListId')
+  getSellersList(@Param('DistributionSessionsListId') DistributionSessionsListId: number) {
+    return this.apiService.getSellersList(DistributionSessionsListId);
+  }
+
+  @Get('products-list/:sellerId')
+  getProductsList(@Param('sellerId') sellerId: number) {
+    return this.apiService.getProductsList(sellerId);
   }
 
 

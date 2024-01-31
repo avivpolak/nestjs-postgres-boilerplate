@@ -1,4 +1,4 @@
-import { IsNumber, IsString, IsUrl } from 'class-validator';
+import { IsInt, IsNumber, IsString, IsUrl } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -17,5 +17,5 @@ export class CreateProductDto {
   inventory: number;
 
   @IsNumber()
-  sellerID: number;
+  seller: number;
 }

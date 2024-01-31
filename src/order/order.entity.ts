@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 import { Customer } from '../customer/customer.entity';
 import { DistributionSession } from '../distribution-session/distribution-session.entity';
 import { Product } from '../product/product.entity';
@@ -29,5 +29,6 @@ export class Order extends BaseEntity {
   distributionSession: DistributionSession;
 
   @ManyToMany((type) => Product, (product) => product.orders)
+  @JoinTable()
   products: Product[];
 }
