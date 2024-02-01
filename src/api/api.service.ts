@@ -8,6 +8,7 @@ import { OrderService } from '../order/order.service';
 import { ProductService } from '../product/product.service';
 import { SellerService } from '../seller/seller.service';
 import { Seller } from '../seller/seller.entity';
+import { Product } from '../product/product.entity';
 //import { DistributionSession } from '../distribution-session/distribution-session.entity';
 //import { DistributionSessionService } from '../distribution-session/distribution-session.service';
 
@@ -38,7 +39,9 @@ export class ApiService {
           })\n`,
       )
       .join('');
-    return { result, optionsAmount: futureDs.length };
+    const idArray = futureDs.map((ds) => ds.id);
+
+    return { result, optionsAmount: futureDs.length, idArray };
   }
 
   async getSellersList(distributionSessionId: number) {
@@ -51,18 +54,21 @@ export class ApiService {
           `${numberToEmoji(i + 1)} *${seller.name}* - ${seller.specialty}\n`,
       )
       .join('');
-    return { result, optionsAmount: sellers.length };
+    const idArray = sellers.map((seller) => seller.id);
+    return { result, optionsAmount: sellers.length, idArray };
   }
 
   async getProductsList(sellerId: number) {
     const products = (await this.sellerService.get(sellerId))?.products;
-    const result = products
+    const availableProducts = filterUnavailableProducts(products);
+    const result = availableProducts
       .map(
         (product, i) =>
           `${numberToEmoji(i + 1)} *${product.name}* - ${product.price}\n`,
       )
       .join('');
-    return { result, optionsAmount: products.length };
+    const idArray = availableProducts.map((product) => product.id);
+    return { result, optionsAmount: products.length, idArray };
   }
 
   async getPaymentFormsList(sellerId: number) {
@@ -104,7 +110,12 @@ const paymentFormsEnum = {
   4: 'אשראי בעת האיסוף 💳',
   5: 'קישור לתשלום מאובטח 🌐',
 };
-function getPaymentFormsCodes(seller: Seller):number[] {
+function filterUnavailableProducts(products: Product[]): Product[] {
+  return products.filter(
+    (product) => product.orders.length < product.inventory,
+  );
+}
+function getPaymentFormsCodes(seller: Seller): number[] {
   const {
     payboxLink,
     bitPhoneNumber,
