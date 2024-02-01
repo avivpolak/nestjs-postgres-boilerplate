@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsBoolean,
   IsNumber,
   IsPhoneNumber,
   IsString,
@@ -27,6 +28,15 @@ export class CreateSellerDto {
 
   @IsPhoneNumber('IL')
   bitPhoneNumber: string;
+
+  @IsUrl()
+  securePaymentLink: string;
+
+  @IsBoolean()
+  acceptingCash: boolean;
+
+  @IsBoolean()
+  acceptingCreditCard: boolean;
 
   @IsPhoneNumber('IL')
   questionsPhoneNumber: string;

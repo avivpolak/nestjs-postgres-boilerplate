@@ -7,6 +7,7 @@ import { CustomerService } from '../customer/customer.service';
 import { OrderService } from '../order/order.service';
 import { ProductService } from '../product/product.service';
 import { SellerService } from '../seller/seller.service';
+import { Seller } from '../seller/seller.entity';
 //import { DistributionSession } from '../distribution-session/distribution-session.entity';
 //import { DistributionSessionService } from '../distribution-session/distribution-session.service';
 
@@ -21,33 +22,61 @@ export class ApiService {
     private readonly sellerService: SellerService,
   ) {}
 
-
-
   create(createApiDto: CreateApiDto) {
-    this.distributionSessionService.getAll
+    this.distributionSessionService.getAll;
     return 'This action adds a new api';
   }
 
   async getDistributionSessionsList() {
-    const allDs = await this.distributionSessionService.getAll()
-    const filteredDs =  allDs.filter((ds)=>{
-      const time = new Date(ds.time)
-      const now  = new Date()
-      return time>now
-    })
-    return filteredDs.map((ds,i)=>`${numberToEmoji(i+1)}* ${(ds.collectionPoint).city}* - ${ds.time} (${ds.collectionPoint.address})\n`).join("")
+    const allDs = await this.distributionSessionService.getAll();
+    const futureDs = allDs.filter((ds) => new Date(ds.time) > new Date());
+    const result = futureDs
+      .map(
+        (ds, i) =>
+          `${numberToEmoji(i + 1)}* ${ds.collectionPoint.city}* - ${ds.time} (${
+            ds.collectionPoint.address
+          })\n`,
+      )
+      .join('');
+    return { result, optionsAmount: futureDs.length };
   }
 
-  async getSellersList(distributionSessionId:number) {
-    return (await this.distributionSessionService.get(distributionSessionId))?.sellers?.map((seller,i)=>
-    `${numberToEmoji(i+1)} *${seller.name}* - ${seller.specialty}\n`).join("")
+  async getSellersList(distributionSessionId: number) {
+    const sellers = (
+      await this.distributionSessionService.get(distributionSessionId)
+    )?.sellers;
+    const result = sellers
+      .map(
+        (seller, i) =>
+          `${numberToEmoji(i + 1)} *${seller.name}* - ${seller.specialty}\n`,
+      )
+      .join('');
+    return { result, optionsAmount: sellers.length };
   }
 
-  async getProductsList(sellerId:number) {
-    return (await this.sellerService.get(sellerId))?.products?.map((product,i)=>
-    `${numberToEmoji(i+1)} *${product.name}* - ${product.price}\n`).join("")
+  async getProductsList(sellerId: number) {
+    const products = (await this.sellerService.get(sellerId))?.products;
+    const result = products
+      .map(
+        (product, i) =>
+          `${numberToEmoji(i + 1)} *${product.name}* - ${product.price}\n`,
+      )
+      .join('');
+    return { result, optionsAmount: products.length };
   }
 
+  async getPaymentFormsList(sellerId: number) {
+    const paymentFormCodes = getPaymentFormsCodes(
+      await this.sellerService.get(sellerId),
+    );
+    const result = paymentFormCodes
+      .map(
+        (paymentFormCode, i) =>
+          `${numberToEmoji(i + 1)} *${paymentFormsEnum[paymentFormCode]}*\n`,
+      )
+      .join('');
+    return { result, optionsAmount: paymentFormCodes.length };
+  }
 
   findOne(id: number) {
     return `This action returns a #${id} api`;
@@ -61,17 +90,61 @@ export class ApiService {
     return `This action removes a #${id} api`;
   }
 }
-function InjectModel(distributionSession: any): (target: ApiService, propertyKey: "distributionSessionModel") => void {
+
+function InjectModel(
+  distributionSession: any,
+): (target: ApiService, propertyKey: 'distributionSessionModel') => void {
   throw new Error('Function not implemented.');
 }
 
-function numberToEmoji(number:number) {
+const paymentFormsEnum = {
+  1: 'פייבוקס 🗳️',
+  2: 'ביט ♦️',
+  3: 'מזומן במדוייק בעת האיסוף 💸',
+  4: 'אשראי בעת האיסוף 💳',
+  5: 'קישור לתשלום מאובטח 🌐',
+};
+function getPaymentFormsCodes(seller: Seller):number[] {
+  const {
+    payboxLink,
+    bitPhoneNumber,
+    acceptingCash,
+    acceptingCreditCard,
+    securePaymentLink,
+  } = seller;
+  const paymentFormsCodes = Object.entries({
+    1: payboxLink,
+    2: bitPhoneNumber,
+    3: acceptingCash,
+    4: acceptingCreditCard,
+    5: securePaymentLink,
+  })
+    .filter(([_, condition]) => condition)
+    .map(([formCode]) => parseInt(formCode));
+
+  return paymentFormsCodes;
+}
+function numberToEmoji(number: number) {
   // יצירת מערך של ספרות המתאימות לאימוג'ים
-  const emojiDigits = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
-  
+  const emojiDigits = [
+    '0️⃣',
+    '1️⃣',
+    '2️⃣',
+    '3️⃣',
+    '4️⃣',
+    '5️⃣',
+    '6️⃣',
+    '7️⃣',
+    '8️⃣',
+    '9️⃣',
+  ];
+
   // קבלת ספרות המקבילות למספר והמרה לאימוג'ים
-  const emojiArray = Array.from(String(number).split("").reverse().join(""), digit => emojiDigits[digit]);
+  const emojiArray = Array.from(
+    String(number).split('').reverse().join(''),
+    (digit) => emojiDigits[digit],
+  );
 
   // שלב האימוג'ים למחרוזת והחזרה
-  return emojiArray.join("");
+  return emojiArray.join('');
 }

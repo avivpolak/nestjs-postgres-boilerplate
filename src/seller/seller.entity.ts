@@ -32,6 +32,15 @@ export class Seller extends BaseEntity {
   bitPhoneNumber: string;
 
   @Column()
+  securePaymentLink: string;
+
+  @Column()
+  acceptingCash: boolean;
+
+  @Column()
+  acceptingCreditCard: boolean;
+
+  @Column()
   questionsPhoneNumber: string;
 
   @Column()
@@ -53,16 +62,5 @@ export class Seller extends BaseEntity {
     (type) => DistributionSession,
     (distributionSession) => distributionSession.sellers,
   )
-  // @JoinTable({
-  //   name: 'seller',
-  //   joinColumn: {
-  //     name: 'sellers',
-  //     referencedColumnName: 'id',
-  //   },
-  //   inverseJoinColumn: {
-  //     name: 'distributionSessions',
-  //     referencedColumnName: 'id',
-  //   },
-  // })
   distributionSessions: DistributionSession[];
 }

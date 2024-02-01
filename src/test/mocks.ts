@@ -71,7 +71,7 @@ const MockProduct = {
   priceForTwo: 1,
   image: "string",
   inventory: 1,
-  sellerID: 1,
+  seller: 1,
 }
 export const MockDto = {
   customer: MockCustomerDto,
