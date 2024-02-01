@@ -6,6 +6,11 @@ import { AppService } from './app.service';
 import { configValidationSchema } from './config.schema';
 import { ProductModule } from './product/product.module';
 import { SellerModule } from './seller/seller.module';
+import { CustomerModule } from './customer/customer.module';
+import { CollectionPointModule } from './collection-point/collection-point.module';
+import { DistributionSessionModule } from './distribution-session/distribution-session.module';
+import { OrderModule } from './order/order.module';
+import { ApiModule } from './api/api.module';
 
 @Module({
   imports: [
@@ -31,6 +36,11 @@ import { SellerModule } from './seller/seller.module';
     }),
     ProductModule,
     SellerModule,
+    CustomerModule,
+    CollectionPointModule,
+    DistributionSessionModule,
+    OrderModule,
+    ApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
