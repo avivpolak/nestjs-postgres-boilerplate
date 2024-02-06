@@ -27,7 +27,6 @@ CMD [ "yarn", "test:watch" ]
 FROM base AS prod
 ENV NODE_ENV=production
 RUN yarn install --production
-RUN npm install --production
 COPY . .
 RUN yarn global add @nestjs/cli
 RUN yarn build

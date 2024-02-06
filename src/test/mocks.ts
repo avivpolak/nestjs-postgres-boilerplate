@@ -1,17 +1,17 @@
-export const MockService = {
-  create: jest.fn((dto) => {
-    return {
-      id: 1,
-      ...dto,
-    };
-  }),
-  update: jest.fn((id, dto) => {
-    return {
-      id,
-      ...dto,
-    };
-  }),
-};
+// export const MockService = { to make it work on production mode, needs to move all jest functions to test files
+//   create: jest.fn((dto) => {
+//     return {
+//       id: 1,
+//       ...dto,
+//     };
+//   }),
+//   update: jest.fn((id, dto) => {
+//     return {
+//       id,
+//       ...dto,
+//     };
+//   }),
+// };
 const MockCustomerDto = {
   id: 1,
   name: 'string',
