@@ -1,0 +1,19 @@
+# steps:
+#   # Step 1: Build the app container
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['build', '-t', 'gcr.io/$PROJECT_ID/app', '-f', 'Dockerfile', '--target', 'dev', '.']
+    
+#   # Step 2: Run the app container
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['run', '-d', '-p', '3000:3000', '-v', '/workspace/src:/app/src', '--name', 'app', 'gcr.io/$PROJECT_ID/app']
+
+#   # Step 3: Pull and run the PostgreSQL container
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['run', '-d', '-p', '5432:5432', '--name', 'db', 'postgres']
+
+#   # Step 4: Pull and run the Adminer container
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['run', '-d', '-p', '8080:8080', '--name', 'adminer', 'adminer']
+
+# substitutions:
+#   _PROJECT_ID: 'whatsappshuk'
