@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateApiDto } from './dto/create-api.dto';
-import { UpdateApiDto } from './dto/update-api.dto';
 import { DistributionSessionService } from '../distribution-session/distribution-session.service';
 import { CollectionPointService } from '../collection-point/collection-point.service';
 import { CustomerService } from '../customer/customer.service';
@@ -23,11 +21,6 @@ export class ApiService {
     private readonly sellerService: SellerService,
   ) {}
 
-  create(createApiDto: CreateApiDto) {
-    this.distributionSessionService.getAll;
-    return 'This action adds a new api';
-  }
-
   async getDistributionSessionsList() {
     const allDs = await this.distributionSessionService.getAll();
     const futureDs = allDs.filter((ds) => new Date(ds.time) > new Date());
@@ -45,9 +38,11 @@ export class ApiService {
   }
 
   async getSellersList(distributionSessionId: number) {
-    const sellers = (
-      await this.distributionSessionService.get(distributionSessionId)
-    )?.sellers;
+    const distributionSession = await this.distributionSessionService.get(distributionSessionId)
+    if (!distributionSession){
+      return `no distribution session found for id "${distributionSessionId}"`
+    }
+    const {sellers} = distributionSession;
     const result = sellers
       .map(
         (seller, i) =>
@@ -59,7 +54,12 @@ export class ApiService {
   }
 
   async getProductsList(sellerId: number) {
-    const products = (await this.sellerService.get(sellerId))?.products;
+    const seller = await this.sellerService.get(sellerId)
+    if (!seller){
+      return `no seller found for id "${sellerId}"`
+
+    }
+    const {products} = seller;
     const availableProducts = filterUnavailableProducts(products);
     const result = availableProducts
       .map(
@@ -86,14 +86,6 @@ export class ApiService {
 
   findOne(id: number) {
     return `This action returns a #${id} api`;
-  }
-
-  update(id: number, updateApiDto: UpdateApiDto) {
-    return `This action updates a #${id} api`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} api`;
   }
 }
 
